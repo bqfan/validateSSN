@@ -115,6 +115,8 @@ GEM
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    valid-date (1.1.2)
+      activesupport
 
 PLATFORMS
   ruby
@@ -125,6 +127,7 @@ DEPENDENCIES
   rails-api
   rspec-rails (~> 3.0)
   spring
+  valid-date
 
 BUNDLED WITH
    1.11.2

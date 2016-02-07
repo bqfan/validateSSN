@@ -9,6 +9,8 @@ gem 'spring', :group => :development
 
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'valid-date'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end
