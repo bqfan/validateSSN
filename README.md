@@ -19,5 +19,3 @@ Request: http://api-endpoint/validateSSN/?ssn=220163-349C
 
 Response: false
 
-
-
