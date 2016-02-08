@@ -46,10 +46,10 @@ class Api::V1::SsnController < ApplicationController
       if @errors.empty?
         render plain: 'true', status: :ok
       else
-        render plain: 'false', status: :bad_request
+        render plain: 'false', status: :ok
   		end
     else
-      render plain: 'false', status: :bad_request
+      render plain: 'false', status: :ok
     end
 
   end
