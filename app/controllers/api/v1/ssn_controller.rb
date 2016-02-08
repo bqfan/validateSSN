@@ -17,30 +17,31 @@ class Api::V1::SsnController < ApplicationController
 
       if ssn.size != 11
       	@errors << 'ssn not 11 digits long.'
-      end
+      else
 
-  		if !ssn[6].to_sym.in?(CENTURY_MAP)
-      	@errors << "Century identification sign wrong (+ for the 19th century, - for the 20th and A for the 21st)."
-      end
+    		if !ssn[6].to_sym.in?(CENTURY_MAP)
+        	@errors << "Century identification sign wrong (+ for the 19th century, - for the 20th and A for the 21st)."
+        end
 
-      birth_date = CENTURY_MAP[ssn[6].to_sym].to_s + ssn[4..5] + '-' + ssn[2..3] + '-' + ssn[0..1]
-  		if !birth_date.valid_date?
-      	@errors << 'Invalid birth date' 
-      end
+        birth_date = CENTURY_MAP[ssn[6].to_sym].to_s + ssn[4..5] + '-' + ssn[2..3] + '-' + ssn[0..1]
+    		if !birth_date.valid_date?
+        	@errors << 'Invalid birth date' 
+        end
 
-  		birth_date_obj = Date.parse(birth_date) rescue Date.today
-      validation_date = Date.today
+    		birth_date_obj = Date.parse(birth_date) rescue Date.today
+        validation_date = Date.today
 
-  		if birth_date_obj >= validation_date
-  			@errors << "Birth date is greater than or equal to today's date."
-  		end
+    		if birth_date_obj >= validation_date
+    			@errors << "Birth date is greater than or equal to today's date."
+    		end
 
-      sum = (ssn[0..5] + ssn[7..9]).to_i
+        sum = (ssn[0..5] + ssn[7..9]).to_i
 
-      checksum = CHECKSUM_TABLE[sum % 31]
+        checksum = CHECKSUM_TABLE[sum % 31]
 
-      if checksum != ssn[-1]
-      	@errors << "Checksum wrong."
+        if checksum != ssn[-1]
+        	@errors << "Checksum wrong."
+        end
       end
     
       if @errors.empty?
@@ -49,7 +50,7 @@ class Api::V1::SsnController < ApplicationController
         render plain: 'false', status: :ok
   		end
     else
-      render plain: 'false', status: :ok
+      render plain: 'false', status: :bad_request
     end
 
   end
