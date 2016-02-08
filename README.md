@@ -6,6 +6,7 @@ It returns HTTP 200 response, with a response body of either true or false, depe
 
 Example request, valid SSN: 
 
+
 Request: http://api-endpoint/validateSSN/?ssn=131052-308T
 
 Response: true
@@ -19,4 +20,3 @@ Request: http://api-endpoint/validateSSN/?ssn=220163-349C
 
 Response: false
 
-The response should have a http 200 status code and contain the header ContentType: text/plain
